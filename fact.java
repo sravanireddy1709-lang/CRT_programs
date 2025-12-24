@@ -1,16 +1,17 @@
-package cse;
-class recurse {
-    int fact(int n) {
-        if (n <= 1) {
-            return 1;
-        }
-        return n * fact(n - 1);
-    }
-
-    public static void main(String[] args) {
-        recurse obj = new recurse();
-        int f = obj.fact(10);
-        System.out.println(f);
-    }
+class Subsets{
+	static boolean subset(int[] a,int n,int target){
+		if(target==0){
+			return True;
+		}
+		if(n==0){
+			return False;
+		}
+		return subset(a,n-1,target);
+		return subset(a,n-1,target)||subset(a,n-1,target-a[n-1]);
+	}
+	public static void main(String[] args){
+		int[] a={2,5,7,3,4,7};
+		int target=9;
+		System.out.println(subset(a,a.length,target));
+	}
 }
-
