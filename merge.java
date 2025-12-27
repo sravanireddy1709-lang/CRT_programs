@@ -1,15 +1,47 @@
-package cse;
-import java.util.Arrays;
-public class merge {
-   public static void main(String[]args)
-   {
-	   int arr1[]= {1,2,3};
-	   int arr2[]= {4,5,6};
-	   int merged[]=Arrays.copyOf(arr1, arr1.length+arr2.length);
-	   for(int i=0;i<arr2.length;i++)
-	   {
-		   merged[arr1.length+i]=arr2[i];
-	   }
-	   System.out.println(Arrays.toString(merged)) ;
-   }
+class Merge{
+    static void mergeSort(int[] a , int left , int right){
+        if(left < right){
+            int mid =  left + (right - left ) / 2;
+            
+            mergeSort(a , left , mid);
+            mergeSort(a , mid + 1 , right);
+            
+            merge(a , left , mid , right);
+        }
+    }
+    
+    static void merge(int[] a , int left , int mid , int right){
+        
+        int[] temp = new int[right - left + 1];
+        int i = left;
+        int j = mid + 1;
+        int k = 0;
+        
+        while(i <= mid && j <= right){
+            if(a[i] <= a[j]){
+                temp[k++] = a[i++];
+            }
+            else{
+                temp[k++] = a[j++];
+            }
+        while(i <= mid){
+            temp[k++] = a[i++];
+        }
+        while(j <= right){
+            temp[k++] = a[j++];
+        }
+        for(i = 0 ; i < temp.length; i++){
+            a[left + i] = temp[i];
+        } 
+        }
+    }
+    
+    public static void main (String[] args) {
+        int[] a = {5 , 3 , 8 , 6 , 2 };
+        
+        mergeSort(a , 0 , a.length - 1 );
+        for(int l : a){
+            System.out.println(l);
+        }
+    }
 }
